@@ -3,7 +3,7 @@ import './globals.css'
 import Header from '@/components/Header'
 
 export const metadata: Metadata = {
-    title: 'IMDb clone',
+    title: 'IMDb',
     description: 'IMDb clone created using NextJS',
 }
 

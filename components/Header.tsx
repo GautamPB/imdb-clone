@@ -1,6 +1,7 @@
 import Image from 'next/image'
-import SearchForm from './SearchForm'
+import SearchForm from '@/components/SearchForm'
 import Link from 'next/link'
+import GenreDropdown from '@/components/GenreDropdown'
 
 const Header = () => {
     return (
@@ -15,6 +16,8 @@ const Header = () => {
             </Link>
 
             <SearchForm />
+
+            <GenreDropdown />
         </div>
     )
 }
