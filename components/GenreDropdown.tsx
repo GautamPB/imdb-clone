@@ -1,5 +1,3 @@
-'use client'
-
 import { Genre, Genres } from '@/typings'
 import { ChevronDown } from 'lucide-react'
 import {
@@ -9,6 +7,7 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import Link from 'next/link'
+import { ScrollArea } from './ui/scroll-area'
 
 const GenreDropdown = async () => {
     const url = 'https://api.themoviedb.org/3/genre/movie/list?language=en'
@@ -31,20 +30,22 @@ const GenreDropdown = async () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger className="bg-white text-black p-2 rounded-sm flex items-center outline-none border-none space-x-2">
-                <h1 className="font-semibold">Genre</h1>
+                <h1>Genre</h1>
                 <ChevronDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-                {genreResults.genres.map((genre: Genre) => (
-                    <Link
-                        key={genre.id}
-                        href={`/genre/${genre.id}?genre=${genre.name}`}
-                    >
-                        <DropdownMenuItem className="cursor-pointer">
-                            {genre.name}
-                        </DropdownMenuItem>
-                    </Link>
-                ))}
+                <ScrollArea className="h-72">
+                    {genreResults?.genres?.map((genre: Genre) => (
+                        <Link
+                            key={genre.id}
+                            href={`/genre/${genre.id}?genre=${genre.name}`}
+                        >
+                            <DropdownMenuItem className="cursor-pointer">
+                                {genre.name}
+                            </DropdownMenuItem>
+                        </Link>
+                    ))}
+                </ScrollArea>
             </DropdownMenuContent>
         </DropdownMenu>
     )
