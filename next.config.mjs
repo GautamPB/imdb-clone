@@ -6,6 +6,16 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'upload.wikimedia.org',
             },
+
+            {
+                protocol: 'https',
+                hostname: 'links.papareact.com',
+            },
+
+            {
+                protocol: 'http',
+                hostname: 'image.tmdb.org',
+            },
         ],
     },
 }

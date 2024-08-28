@@ -22,7 +22,7 @@ const Search = ({
     }
 
     return (
-        <div>
+        <div className="px-2 md:px-8 mt-2">
             <h1>
                 Search Results for {termToUse}, {category}
             </h1>
