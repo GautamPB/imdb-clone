@@ -1,7 +1,12 @@
-import { getInTheatres } from '@/lib/apiCall'
+'use client'
+
+import { getInTheatres, getTrending } from '@/lib/apiCall'
+import Movie from '@/components/Movie'
 
 export default function Home() {
     const inTheatres = getInTheatres()
+
+    const trendingMovies = getTrending()
 
     console.log(inTheatres)
 

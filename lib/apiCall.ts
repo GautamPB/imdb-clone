@@ -1,3 +1,5 @@
+import { Movie } from '@/typings'
+
 export async function fetchFromTMDB(url: URL) {
     url.searchParams.set('include_adult', 'false')
     url.searchParams.set('include_video', 'true')
@@ -18,7 +20,7 @@ export async function fetchFromTMDB(url: URL) {
     }
 
     const response = await fetch(url, options)
-    const data = response.json()
+    const data = await response.json()
 
     return data
 }
@@ -28,7 +30,13 @@ export async function getInTheatres() {
 
     const data = await fetchFromTMDB(url)
 
-    console.log(data)
+    return data
+}
+
+export async function getTrending() {
+    const url = new URL('https://api.themoviedb.org/3/discover/movie')
+
+    const data = await fetchFromTMDB(url)
 
     return data
 }
