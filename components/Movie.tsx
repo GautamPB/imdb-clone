@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import getImagePath from '@/lib/getImagePath'
-import { MovieType } from '@/typings'
+import { Media } from '@/typings'
 import { InfoIcon } from 'lucide-react'
 
-const Movie = ({ movie }: { movie: MovieType }) => {
+const Movie = ({ media }: { media: Media }) => {
     return (
         <div className="flex flex-col min-w-[12rem] cursor-pointer bg-[#1A1A1A] rounded-sm">
             <Image
                 className="h-[18rem] object-contain"
-                src={getImagePath(movie?.poster_path, true)}
+                src={getImagePath(media?.poster_path, true)}
                 alt="posterPath"
                 width={1920}
                 height={1080}
@@ -16,11 +16,11 @@ const Movie = ({ movie }: { movie: MovieType }) => {
 
             <div className="py-4 px-2">
                 <h1 className="text-gray-400 my-2">
-                    ⭐ {Math.round(movie.vote_average * 10) / 10}
+                    ⭐ {Math.round(media.vote_average * 10) / 10}
                 </h1>
 
                 <h1 className="hover:underline inline-block truncate w-full">
-                    {movie.title}
+                    {media.title ? media.title : media.name}
                 </h1>
 
                 <div className="flex rounded-md justify-center items-center mt-8 space-x-4 bg-[#2F343B] p-2">

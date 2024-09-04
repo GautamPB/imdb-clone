@@ -7,7 +7,7 @@ export type Genres = {
     genres: Genre[]
 }
 
-export type MovieType = {
+export type Media = {
     adult: boolean
     backdrop_path: string
     genre_ids: [number]
@@ -22,6 +22,7 @@ export type MovieType = {
     video: boolean
     vote_average: number
     vote_count: number
+    name: string
 }
 
 export type Actor = {
