@@ -5,6 +5,7 @@ import useEmblaCarousel from 'embla-carousel-react'
 import Fade from 'embla-carousel-fade'
 import Autoplay from 'embla-carousel-autoplay'
 import CarouselCard from './CarouselCard'
+import NextCard from './NextCard'
 
 Autoplay.globalOptions = { delay: 8000 }
 
@@ -19,12 +20,9 @@ const Carousel = ({ movies }: Props) => {
     ])
 
     return (
-        <div
-            ref={emblaRef}
-            className="w-full h-full flex space-x-2 items-start"
-        >
+        <div ref={emblaRef} className="w-full flex space-x-2 items-start">
             {/* carousel container */}
-            <div className="flex overflow-x-scroll md:w-[70vw] md:h-1/2 w-full h-full scrollbar-hide">
+            <div className="flex overflow-x-scroll lg:w-[70vw] w-full h-full scrollbar-hide">
                 {movies?.map((movie: Media) => (
                     <div className="w-full h-full flex items-start">
                         <CarouselCard movie={movie} key={movie.id} />
@@ -32,8 +30,14 @@ const Carousel = ({ movies }: Props) => {
                 ))}
             </div>
 
-            <div className="hidden lg:flex flex-col">
-                <h1 className="text-[#F5C518]">Up next</h1>
+            <div className="hidden h-full lg:flex grow flex-col space-y-4">
+                <h1 className="text-[#F5C518] font-bold text-lg">Up next</h1>
+
+                <div className="overflow-y-scroll w-full h-full space-y-2 flex-col flex scrollbar-hide">
+                    {movies?.map((movie: Media) => (
+                        <NextCard movie={movie} />
+                    ))}
+                </div>
             </div>
         </div>
     )

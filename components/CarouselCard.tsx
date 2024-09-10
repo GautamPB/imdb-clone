@@ -3,10 +3,14 @@ import { Media } from '@/typings'
 import Image from 'next/image'
 
 const CarouselCard = ({ movie }: { movie: Media }) => {
+    const dateTimeFormatter = new Intl.DateTimeFormat('en-US', {
+        dateStyle: 'medium',
+    })
+
     return (
-        <div className="w-[100vw] h-full md:w-[70vw] relative">
+        <div className="w-[100vw] h-full lg:w-[70vw] relative">
             <Image
-                className="h-full w-full object-contain"
+                className="h-full w-full object-cover"
                 src={getImagePath(movie.backdrop_path, true)}
                 alt=""
                 width={1920}
@@ -24,14 +28,29 @@ const CarouselCard = ({ movie }: { movie: Media }) => {
                     height={1080}
                 />
 
-                <div className="w-full space-y-4">
-                    <h1 className="text-lg md:text-2xl lg:text-3xl">
+                <div className="w-full space-y-6">
+                    <h1 className="text-xl md:text-3xl lg:text-4xl">
                         {movie.title}
                     </h1>
 
-                    <p className="hidden md:block hover:line-clamp-3">
-                        {movie.overview}
-                    </p>
+                    <div className="flex items-end space-x-2 text-lg md:text-2xl lg:text-2xl">
+                        <h2>⭐️ {Math.round(movie.vote_average * 10) / 10}</h2>
+
+                        <h2 className="text-gray-300">
+                            {dateTimeFormatter.format(
+                                new Date(movie.release_date)
+                            )}
+                        </h2>
+                    </div>
+
+                    <div className="line-clamp-3">
+                        <p className="hidden md:block">{movie.overview}</p>
+                    </div>
+
+                    <div className="flex items-center space-x-4 text-gray-400">
+                        <p>Ratings: {movie.vote_count}</p>
+                        <p>♡ {Math.round(movie.popularity)}</p>
+                    </div>
                 </div>
             </div>
         </div>

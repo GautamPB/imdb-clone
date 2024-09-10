@@ -21,7 +21,10 @@ export default async function Home() {
 
     return (
         <div className="px-2 md:px-8 w-full h-full">
-            <CarouselWrapper />
+            <div className="flex grow-1 max-h-[35rem]">
+                <CarouselWrapper />
+            </div>
+
             <div className="mt-2">
                 <h1 className="text-[#F5C518] font-bold text-4xl mt-8 mb-4">
                     Featured today
