@@ -32,7 +32,8 @@ const SearchForm = () => {
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values.searchType, values.searchTerm)
+        console.log(values.searchTerm, values.searchType)
+
         router.push(
             `/search/${values.searchTerm}?category=${values.searchType}`
         )
@@ -61,6 +62,7 @@ const SearchForm = () => {
                                 <SelectItem value="All">All</SelectItem>
                                 <SelectItem value="movie">Movie</SelectItem>
                                 <SelectItem value="tv">TV</SelectItem>
+                                <SelectItem value="person">Person</SelectItem>
                             </SelectContent>
                         </Select>
                     )}

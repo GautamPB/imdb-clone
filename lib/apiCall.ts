@@ -105,3 +105,34 @@ export async function getGenres() {
 
     return genreResults.genres
 }
+
+export async function getSearchResults(searchTerm: string, searchType: string) {
+    let tempURL = ''
+
+    if (searchType.toLowerCase() === 'all') {
+        tempURL = 'https://api.themoviedb.org/3/search/multi'
+    } else {
+        tempURL = `https://api.themoviedb.org/3/search/${searchType.toLowerCase()}`
+    }
+
+    const url = new URL(tempURL)
+
+    url.searchParams.append('query', searchTerm)
+    url.searchParams.append('include_adult', 'false')
+    url.searchParams.append('language', 'en-US')
+    url.searchParams.append('page', '1')
+
+    const options: RequestInit = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${process.env.TMDB_API_KEY}`,
+        },
+    }
+
+    const results = await fetch(url.toString(), options)
+
+    const searchResults = results.json()
+
+    return searchResults
+}
