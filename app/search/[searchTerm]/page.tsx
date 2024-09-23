@@ -1,8 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 import { notFound } from 'next/navigation'
 import { getSearchResults } from '@/lib/apiCall'
 import { Actor, Media } from '@/typings'
-import SearchCard from '@/components/MediaSearch'
 import ActorSearch from '@/components/ActorSearch'
+import MediaSearch from '@/components/MediaSearch'
 
 type Props = {
     params: {
@@ -39,24 +40,21 @@ const Search = async ({
                     Titles
                 </h1>
 
-                <div className="w-full border border-gray-800 mt-4 flex flex-col w-full">
-                    {category.toLowerCase() !== 'person'
-                        ? searchResults?.results
-                              ?.filter(
-                                  (search: any) =>
-                                      search.media_type !== 'person'
-                              )
-                              .map((media: Media) => (
-                                  <SearchCard media={media} key={media.id} />
-                              ))
-                        : searchResults?.results
-                              ?.filter(
-                                  (search: any) =>
-                                      search.media_type === 'person'
-                              )
-                              .map((actor: Actor) => (
-                                  <ActorSearch actor={actor} key={actor.id} />
-                              ))}
+                <div className="border border-gray-800 mt-4 flex flex-col w-full">
+                    {searchResults?.results?.map((search: any) => {
+                        if (
+                            search.media_type === 'person' ||
+                            category.toLowerCase() === 'person'
+                        ) {
+                            return (
+                                <ActorSearch actor={search} key={search.id} />
+                            )
+                        } else {
+                            return (
+                                <MediaSearch media={search} key={search.id} />
+                            )
+                        }
+                    })}
                 </div>
             </div>
         </div>

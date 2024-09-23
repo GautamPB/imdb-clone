@@ -32,8 +32,6 @@ const SearchForm = () => {
     })
 
     function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log(values.searchTerm, values.searchType)
-
         router.push(
             `/search/${values.searchTerm}?category=${values.searchType}`
         )

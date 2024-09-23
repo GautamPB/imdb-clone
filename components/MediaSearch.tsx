@@ -18,6 +18,8 @@ const MediaSearch = ({ media }: { media: Media }) => {
             <div>
                 <div className="line-clamp-1 text-lg font-bold group-hover:text-gray-400">
                     <h1>{media.title ? media.title : media.name}</h1>
+
+                    <h2>{media.vote_average}</h2>
                 </div>
             </div>
         </div>
